@@ -13,6 +13,9 @@ router.post(
   registerSchoolValidator,
   authController.registerSchool
 );
+
+router.post("/register-staff", authController.registerStaff);
+
 router.post("/login", loginValidator, authController.login);
 
 module.exports = router;

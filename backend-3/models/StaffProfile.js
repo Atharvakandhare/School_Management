@@ -42,6 +42,11 @@ const StaffProfile = sequelize.define(
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
+    workingAs: {
+      type: DataTypes.ENUM("TEACHER", "OFFICE_STAFF"),
+      allowNull: false,
+      defaultValue: "TEACHER"
+    }
   },
   {
     tableName: "staff_profiles",
