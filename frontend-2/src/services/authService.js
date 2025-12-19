@@ -89,6 +89,25 @@ const registerSchool = async (data) => {
   }
 };
 
+/**
+ * Register a new staff member
+ * @param {Object} data - Staff registration data
+ * @param {string} data.email - Staff email (required)
+ * @param {string} data.firstName - Staff first name (required)
+ * @param {string} data.lastName - Staff last name (required)
+ * @param {string} data.password - Staff password (required)
+ * @param {string} data.schoolId - School ID (required)
+ * @returns {Promise<Object>} Response with success status and message
+ */
+const registerStaff = async (data) => {
+  try {
+    const response = await api.post('/auth/register-staff', data);
+    return response;
+  } catch (error) {
+    console.error('Staff registration error:', error);
+    return error.response;
+  }
+};
 
 
 const authService = {

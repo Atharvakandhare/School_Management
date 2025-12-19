@@ -42,6 +42,8 @@ export default function Login() {
                     login(user, token);
                     if (user.role === 'PARENT') {
                         navigate('/parent-dashboard');
+                    } else if (user.role === 'TEACHER' || user.role === 'STAFF') {
+                        navigate('/teacher-dashboard');
                     } else {
                         navigate('/dashboard');
                     }
