@@ -9,3 +9,4 @@ export { default as studentService } from './studentService';
 export { default as parentService } from './parentService';
 export { default as dashboardService } from './dashboardService';
 export { default as bulkUploadService } from './bulkUploadService';
+export { default as leaveService } from './leaveService';

@@ -51,6 +51,7 @@ app.use("/api/students", studentRoutes);
 app.use("/api/parents", parentRoutes);
 app.use("/api/upload", bulkUploadRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/leaves", require("./routes/leaveRoutes"));
 
 
 // 404
