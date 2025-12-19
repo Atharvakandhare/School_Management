@@ -81,9 +81,9 @@ const createTimetableEntry = async (data) => {
  * Get timetable
  * @returns {Promise<Object>} Response
  */
-const getTimetable = async () => {
+const getTimetable = async (params) => {
   try {
-    const response = await api.get('/academics/timetable');
+    const response = await api.get('/academics/timetable', { params });
     return response;
   } catch (error) {
     console.error('Get timetable error:', error);

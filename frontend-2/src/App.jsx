@@ -8,6 +8,7 @@ import { ErrorBoundary } from '@/components/common';
 // Auth pages
 import RegisterSchool from '@/pages/auth/RegisterSchool';
 import Login from '@/pages/auth/Login';
+import RegisterStaff from '@/pages/auth/RegisterStaff';
 import Home from '@/pages/Home';
 import Dashboard from '@/pages/Dashboard';
 
@@ -18,6 +19,7 @@ import LinkStudentToParent from '@/pages/parents/LinkStudentToParent';
 import CreateParent from '@/pages/parents/CreateParent';
 import ParentDashboard from '@/pages/dashboard/ParentDashboard';
 import ChildDashboard from '@/pages/dashboard/ChildDashboard';
+import TeacherDashboard from '@/pages/dashboard/TeacherDashboard';
 import BulkUploadPage from '@/pages/admin/BulkUploadPage';
 
 
@@ -41,6 +43,9 @@ import FeeStructure from '@/pages/finance/FeeStructure';
 import FeeCollection from '@/pages/finance/FeeCollection';
 import Payroll from '@/pages/finance/Payroll';
 
+// Leave Pages
+import LeaveApplication from '@/pages/leaves/LeaveApplication';
+
 // Other Pages
 import Notifications from '@/pages/Notifications';
 
@@ -51,6 +56,9 @@ function App() {
         <ErrorBoundary>
           <Routes>
             {/* Public Routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register-staff" element={<RegisterStaff />} />
+            {/* register-school is usually protected or secret, but putting it public for now if requested, else keeping it protected as per current code */}
 
             {/* Protected Routes */}
             <Route
@@ -59,9 +67,6 @@ function App() {
                 <MainLayout />
               }
             >
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-
               <Route path="dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
               <Route path="register-school" element={<ProtectedRoute><RegisterSchool /></ProtectedRoute>} />
               {/* Academic Routes */}
@@ -80,6 +85,9 @@ function App() {
               <Route path="parent-dashboard" element={<ProtectedRoute><ParentDashboard /></ProtectedRoute>} />
               <Route path="parent/child/:studentId" element={<ProtectedRoute><ChildDashboard /></ProtectedRoute>} />
 
+              {/* Teacher Routes */}
+              <Route path="teacher-dashboard" element={<ProtectedRoute><TeacherDashboard /></ProtectedRoute>} />
+
               {/* Attendance Routes */}
               <Route path="attendance/mark" element={<ProtectedRoute><MarkAttendance /></ProtectedRoute>} />
               <Route path="attendance/report" element={<ProtectedRoute><AttendanceReport /></ProtectedRoute>} />
@@ -97,6 +105,7 @@ function App() {
 
               {/* Other Routes */}
               <Route path="notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+              <Route path="leaves/apply" element={<ProtectedRoute><LeaveApplication /></ProtectedRoute>} />
 
 
               <Route path="*" element={<Navigate to="/dashboard" replace />} />

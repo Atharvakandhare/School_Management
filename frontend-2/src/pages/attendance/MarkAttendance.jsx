@@ -18,7 +18,7 @@ import {
     CardBody
 } from "@heroui/react";
 import { Icon } from "@iconify/react";
-import { academicService, attendanceService } from '@/services';
+import { academicService, attendanceService, studentService } from '@/services';
 import { format } from 'date-fns';
 
 export default function MarkAttendance() {
@@ -48,14 +48,21 @@ export default function MarkAttendance() {
         const classId = e.target.value;
         setSelectedClass(classId);
         if (!classId) return;
+        fetchStudents(classId);
+    };
 
-        // Fetch students for the class (assuming API exists or part of class details)
-        // For now, mocking or assuming we can get filtered students
-        // fetchStudents(classId);
-        setStudents([
-            { _id: '1', firstName: 'John', lastName: 'Doe' },
-            { _id: '2', firstName: 'Jane', lastName: 'Smith' },
-        ]);
+    const fetchStudents = async (classId) => {
+        setIsLoading(true);
+        try {
+            const response = await studentService.getAllStudents({ classId });
+            if (response.data?.success) {
+                setStudents(response.data.data?.students || []);
+            }
+        } catch (error) {
+            console.error('Error fetching students:', error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleAttendanceChange = (studentId, isPresent) => {
